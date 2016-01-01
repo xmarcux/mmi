@@ -21,4 +21,4 @@ To get information about a user POSIX library is used.
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Compile with: </br>
-gcc -Wall mmi.c
+gcc -Wall mmi.c -o mmi
