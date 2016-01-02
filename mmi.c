@@ -28,6 +28,8 @@
 #include <grp.h>
 #include <string.h>
 
+#define VERSION "1.0.0"
+
 int main(int argc, char *argv[])
 {
   char *prog, *uname, **grmem, hname[HOST_NAME_MAX+1];
@@ -42,10 +44,38 @@ int main(int argc, char *argv[])
       exit(1);
     }
   }
-  else if(argc == 2)
+  else if(argc == 2){
+    if((!strcmp(argv[1], "-V")) || (!strcmp(argv[1], "--version"))){
+      printf("mmi - Me, Myself and I\nversion: %s\n", VERSION);
+      exit(0);
+    }
+    else if(!strcmp(argv[1], "--help")){
+      printf("\nUsage:\n mmi [options] or mmi [username]\n\n");
+      printf("Options:\n     --help\tdisplay this help text and exit\n");
+      printf(" -l, --license\toutput license information and exit\n");
+      printf(" -V, --version\toutput version information and exit\n\n");
+      exit(0);
+    }
+    else if((!strcmp(argv[1], "-l")) || (!strcmp(argv[1], "--license"))){
+      printf("\n   mmi - Me, Myself and I\n");
+      printf("   Copyright (C) 2015 Marcus Pedersén\n\n");
+      printf("   This program is free software: you can redistribute it and/or modify\n");
+      printf("   it under the terms of the GNU General Public License as published by\n");
+      printf("   the Free Software Foundation, either version 3 of the License, or\n");
+      printf("   (at your option) any later version.\n\n");
+      printf("   This program is distributed in the hope that it will be useful,\n");
+      printf("   but WITHOUT ANY WARRANTY; without even the implied warranty of\n");
+      printf("   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n");
+      printf("   GNU General Public License for more details.\n\n");
+      printf("   You should have received a copy of the GNU General Public License\n");
+      printf("   along with this program.  If not, see <http://www.gnu.org/licenses/>.\n\n");
+      exit(0);
+    }
+
     uname = argv[1];
+  }
   else{
-    fprintf(stderr, "%s: Takes zero or one argument\n", prog);
+    fprintf(stderr, "%s: Takes zero or one argument\nUse: mmi --help for help\n ", prog);
     exit(1);
   }
 
